@@ -6,11 +6,6 @@ a = datetime.datetime.now()
 
 time = 600
 
-#t=0
-L = 5 #larva
-P = 0  #kukla
-A = 0  #brouk
-
 cla = 0.009
 cll = 0.012
 cpa = 0.004
@@ -21,6 +16,10 @@ f = open('pocitej_output.txt', 'w')
 
 for mul in np.linspace(0.1,0.4,50): #0.267
     for mua in np.linspace(0.001,0.005,50): #0.0035
+        #t=0
+        L = 5 #larva
+        P = 0  #kukla
+        A = 0  #brouk
         
         for t in range(0, time-1):
             L2 = b*A*math.exp(-cla*A-cll*L)
