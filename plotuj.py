@@ -5,11 +5,11 @@ with open("pocitej_output.txt") as f:
     data = f.read().split(" ")
 
 
-matrix = np.loadtxt('pocitej_output.txt', usecols=range(3))
-L = matrix[:,0]
-P = matrix[:,1]
-A = matrix[:,2]
-T = [ N%600 for N in range(L.size) ]
+matrix = np.loadtxt('pocitej_output.txt', usecols=range(4))
+mu= matrix[:,0]
+L = matrix[:,1]
+P = matrix[:,2]
+A = matrix[:,3]
 
 
 fig = plt.figure()
@@ -20,7 +20,7 @@ ax1.set_title("Plot title...")
 ax1.set_xlabel('your x label..')
 ax1.set_ylabel('your y label...')
 
-ax1.scatter(T, A, c='r', label='the data')
+ax1.scatter(mu, A, c='b', s=1, label='the data')
 
 leg = ax1.legend()
 

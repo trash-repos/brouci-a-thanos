@@ -15,13 +15,12 @@ mup = 0
 b = 7.48
 
 f = open('pocitej_output.txt', 'w')
-f.write(f'{time}\n')
 
-for i in np.linspace(0.003,0.004,100): #0.0035
+for mua in np.linspace(0.003,0.004,100): #0.0035
     P = 5  #kukla
     A = 3  #brouk
 
-    for L in range(1,50):
+    for L in range(30,50):
         for t in range(0, time-1):
             L2 = b*A*math.exp(-cla*A-cll*L)
             P2 = L*(1-mul)
