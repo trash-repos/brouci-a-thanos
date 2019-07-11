@@ -29,7 +29,7 @@ for mul in np.linspace(0.1,0.4,50): #0.267
             L,P,A = L2,P2,A2
 
             f.write(f'{L:.0f} {P:.0f} {A:.0f} \n')
-    f.write('\n')
+        f.write('\n')
     f.close()
 
 #np.savetxt('pocitej_output.txt', np.c_[L,P,A], fmt='%.0f')
