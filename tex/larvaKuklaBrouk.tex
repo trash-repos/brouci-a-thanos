@@ -1,0 +1,117 @@
+% !TEX program = xelatex
+\documentclass[a4paper, 12pt]{article}
+
+\setlength{\hoffset}{-1.6cm} 
+\setlength{\voffset}{-1.6cm}
+\setlength{\textheight}{24.0cm} 
+\setlength{\textwidth}{17cm}
+
+\usepackage{float} %použití [H] u figur, umístění na přesné místo
+\usepackage{amssymb}
+\usepackage[intlimits]{amsmath}
+\usepackage{xltxtra,polyglossia}
+\usepackage{tikz} % Export grafů z RStudia
+\usepackage{placeins} % Umožňuje používat \FloatBarrier
+\usepackage[super,square]{natbib} % Citace s horním indexem a v hranatých závorkách
+\usepackage[nottoc]{tocbibind} % Aby se texal "Seznam použité literatury" místo "Reference"
+\usepackage{color,graphicx,graphics}
+\usepackage{booktabs,paralist,url}
+\usepackage{pdfpages}
+\usepackage{fancyhdr}
+%\usepackage{siunitx} %$$\SI{666\pm 5 e3}{cm^{-1}}$$
+
+\setmainlanguage{czech}
+\renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}} %pro psaní \d jako derivace
+\newcommand{\U}[1]{{\ \rm #1}} % sazba jednotek
+\newcommand{\E}[1]{\cdot 10^{#1}} % sazba exponentu (10^exponent)
+\newcommand{\EU}[2]{\E{#1}\U{#2}} % sazba exponentu a jednotek jednotek
+
+
+\usepackage{newfloat} %pro zadefinování graph
+\DeclareFloatingEnvironment{graph} %zadefinuje graph
+\addto\captionsczech{ %vytvoří 2 typy figur
+  \renewcommand{\graphname}{Graf} %\begin{graph}
+  \renewcommand{\figurename}{Obrázek}%\begin{figure}
+}
+%\bibliography{literatura}
+%\input{dependencies/slovnik} % explicitní slovník slov, která se mají zalamovat na konci řádku ( nejnovější verze vždy na https://gitlab.com/skolar/slovnik.git )
+
+%\usepackage{fkssugar}
+%\usepackage{longtable}
+%\usepackage{python}
+
+%pro pdfTEX
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{lmodern}
+%\usepackage[czech]{babel}
+
+
+% \newcommand{\AUTOR}{}
+
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+% \lhead{}
+% \rhead{\AUTOR}
+
+\begin{document}
+\section{Moučný červ (Tribolium)}
+Vývoj tohoto červa je postupně: vajíčko $\rightarrow$ larva $L$ (2 týdny)$\rightarrow$ kukla $P$ (2 týdny)$\rightarrow$ brouk $A$. Vývoj jednotlivých fází lze popsat vztahy\\
+\begin{equation}
+    \begin{split}
+\text{Larva: }& L_{n+1}=b A_n \\
+\text{Kukla: }& P_{n+1}=L_n(1-\mu_l) \\
+\text{Brouk: }& A_{n+1}=P_n(1-\mu_p)+A_n(1-\mu_a), \\
+    \end{split}
+\end{equation}
+kde $\mu_l$ je úmrtnost larev, $\mu_p$ úmrtnost kukel a $\mu_a$ úmrtnost brouků.
+
+
+Pokud zahrneme kanibalismus, který se u těchto druhů často vyskytuje, dostaneme: \\
+\begin{equation}
+\begin{split}
+\text{požírání larev: }&L_{n+1}=b A_n e^{-c_{la}A_n-c_{ll} L_n} \\
+\text{požírání kukel: }&P_{n+1}=L_n(1-\mu_l) \\
+\text{požírání brouků: }& A_{n+1}=P_n(1-\mu_p)e^{-c_{pa} A_n}+A_n(1-\mu_a), \\
+\end{split}
+\end{equation}
+kde koeficienty byly zjištěny experimentálně jako
+\begin{equation}
+\begin{split}
+c_{la}& = 0.009 \text{ (A požírá L)}\\
+c_{ll}& = 0.012 \text{ (L požírá L)}\\
+c_{pa}& = 0.004 \text{ (A požírá P)}\\
+\mu_l& = 0.267 \\
+\mu_p& = 0\\
+\mu_a& = 0.0036 \text{ (základní úmrtnost)} \\
+b& =7.48 \text{ počet nových larev na 1 dospělého brouka za jednotku času, což je 14 dní)}\\
+\end{split}
+\end{equation}
+
+\subsection{Nalezení největšího Ljapuova exponentu}
+Nalezení největšího Ljapuova experimentu pro $\mu_a\in[0,1]$ provedeme metodou............
+
+.................
+Fázový prostor $x=P_n$, y=$L_n$, $z=A_n$
+
+První bifurkace je při $\mu_a=0.1$, zde se perioda $1$ mění na periodu $2$. Druhá bifurkace je v bodě $\mu_a=0.6$, perioda $2$ se mění na $1$. ke třetí bifurkaci dochází při $\mu_a=0.954$, kde vzniká chaotické chování.
+
+projekt: 
+
+\section{Po Thanosově lusknutí}
+Předpokládejme, že populace blouků je statisticky natolik veliká, že dojde k vyhlazení poloviny populace.
+Tento krok lze zapsal, jako
+\begin{equation}
+  \begin{split}
+\text{Larva: }& L_{n+1}=\frac{L_n}{2} \\
+\text{Kukla: }& P_{n+1}=\frac{P_n}{2} \\
+\text{Brouk: }& A_{n+1}=\frac{A_n}{2} \\
+  \end{split}
+\end{equation}
+
+
+---------------------------------------------------------------------\\
+\today, Daniel Rod, Michal Grňo, Jan Střeleček
+
+\end{document}
+
