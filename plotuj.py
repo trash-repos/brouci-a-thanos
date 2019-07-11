@@ -9,7 +9,7 @@ matrix = np.loadtxt('pocitej_output.txt', usecols=range(3))
 L = matrix[:,0]
 P = matrix[:,1]
 A = matrix[:,2]
-T = list(range(L.size))
+T = [ N%600 for N in range(L.size) ]
 
 
 fig = plt.figure()
@@ -20,7 +20,7 @@ ax1.set_title("Plot title...")
 ax1.set_xlabel('your x label..')
 ax1.set_ylabel('your y label...')
 
-ax1.plot(T, A, c='r', label='the data')
+ax1.scatter(T, A, c='r', label='the data')
 
 leg = ax1.legend()
 
