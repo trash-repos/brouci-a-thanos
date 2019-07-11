@@ -1,6 +1,7 @@
 import numpy as np
 import math
 import datetime
+from itertools import product
 
 a = datetime.datetime.now()
 
@@ -16,11 +17,11 @@ b = 7.48
 
 f = open('pocitej_output.txt', 'w')
 
-for mua in np.linspace(0.003,0.004,100): #0.0035
-    P = 5  #kukla
-    A = 3  #brouk
+for mua in np.linspace(0.0005,0.010,500): #0.0035
+    L = 1
+    P = A = 0
 
-    for L in range(30,50):
+    for [mul, mup] in product(np.linspace(0.266,0.268,10), np.linspace(0,0.001,10)):
         for t in range(0, time-1):
             L2 = b*A*math.exp(-cla*A-cll*L)
             P2 = L*(1-mul)
@@ -28,7 +29,7 @@ for mua in np.linspace(0.003,0.004,100): #0.0035
             
             L,P,A = L2,P2,A2
 
-        f.write(f'{mua:.10f} {L:.0f} {P:.0f} {A:.0f} \n')
+        f.write(f'{mua:.10f} {L:.5f} {P:.5f} {A:.5f} \n')
 
 
 f.close()
