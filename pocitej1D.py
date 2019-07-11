@@ -15,22 +15,22 @@ mup = 0
 b = 7.48
 
 f = open('pocitej_output.txt', 'w')
+f.write(f'{time}\n')
 
-for mua in np.linspace(0.001,0.005,50): #0.0035
+for mua in np.linspace(0.003,0.004,10): #0.0035
     #t=0
-    L = 5  #larva
-    P = 0  #kukla
-    A = 0  #brouk
+    P = 5  #kukla
+    A = 3  #brouk
+    for L in range(1,50,2):
+        for t in range(0, time-1):
+            L2 = b*A*math.exp(-cla*A-cll*L)
+            P2 = L*(1-mul)
+            A2 = P*(1-mup)*math.exp(-cpa*A)+A*(1-mua)
+            
+            L,P,A = L2,P2,A2
 
-    for t in range(0, time-1):
-        L2 = b*A*math.exp(-cla*A-cll*L)
-        P2 = L*(1-mul)
-        A2 = P*(1-mup)*math.exp(-cpa*A)+A*(1-mua)
-        
-        L,P,A = L2,P2,A2
+            f.write(f'{L:.0f} {P:.0f} {A:.0f} \n')
 
-        f.write(f'{L:.0f} {P:.0f} {A:.0f} \n')
-    f.write('\n')
 
 f.close()
 
