@@ -4,7 +4,7 @@ import datetime
 
 a = datetime.datetime.now()
 
-time = 600
+time = 100
 
 
 cla = 0.009
@@ -17,11 +17,11 @@ b = 7.48
 f = open('pocitej_output.txt', 'w')
 f.write(f'{time}\n')
 
-for mua in np.linspace(0.003,0.004,10): #0.0035
-    #t=0
+for i in np.linspace(0.003,0.004,100): #0.0035
     P = 5  #kukla
     A = 3  #brouk
-    for L in range(1,50,2):
+
+    for L in range(1,50):
         for t in range(0, time-1):
             L2 = b*A*math.exp(-cla*A-cll*L)
             P2 = L*(1-mul)
@@ -29,7 +29,7 @@ for mua in np.linspace(0.003,0.004,10): #0.0035
             
             L,P,A = L2,P2,A2
 
-            f.write(f'{L:.0f} {P:.0f} {A:.0f} \n')
+        f.write(f'{mua:.10f} {L:.0f} {P:.0f} {A:.0f} \n')
 
 
 f.close()
