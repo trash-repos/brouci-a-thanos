@@ -3,14 +3,14 @@ import math
 import datetime
 from itertools import product
 from multiprocessing import Pool
-from os import listdir
+from os import listdir, remove
 from os.path import isfile, join
 
 
 
 files = [fd for fd in ( join('data/', f) for f in listdir('data/') ) if isfile(fd)]
 for f in files:
-    os.remove(f)
+    remove(f)
 
 
 a = datetime.datetime.now()
@@ -28,12 +28,12 @@ b = 7.48
 
 def vlakno(A):
     A0 = A
-    with open('data/pocitej_output_' + str(A) + '.txt', 'w') as f:
+    with open('data/pocitej_output_' + str(A0) + '.txt', 'w') as f:
         for L in np.linspace(1,200,3):
             L0 = L
             for P in np.linspace(1,600,4):
                 P0 = P
-                for mua in np.linspace(0.9,1,5): #np.linspace(0.0000,1,200000): #0.0035
+                for mua in np.linspace(0.98,1,50): #np.linspace(0.0000,1,200000): #0.0035
                     for t in range(0, time-1):
                         L2 = b*A*np.exp(-cla*A-cll*L)
                         P2 = L*(1-mul)
@@ -45,7 +45,7 @@ def vlakno(A):
 
 
 pool = Pool(8)
-sums = pool.map(vlakno, np.linspace(0,70,8))
+sums = pool.map(vlakno, np.linspace(0,0.05,8))
 
 # def vlakno(A):
 #     with open('data/pocitej_output_' + str(A) + '.txt', 'w') as f:
