@@ -26,41 +26,42 @@ mup = 0
 b = 7.48
 
 
-
-
 def vlakno(A):
+
+    L=10
+    P=10
     with open('data/pocitej_output_' + str(A) + '.txt', 'w') as f:
-        for L in np.linspace(1,200,3):
-            for P in np.linspace(1,600,4):
-                for mua in np.linspace(0.0000,1,200000): #0.0035
-                    for t in range(0, time-1):
-                        L2 = b*A*np.exp(-cla*A-cll*L)
-                        P2 = L*(1-mul)
-                        A2 = P*(1-mup)*np.exp(-cpa*A)+A*(1-mua)
-                        
-                        L,P,A = L2,P2,A2
-                    f.write(f'{mua:.10f} {L:.5f} {P:.5f} {A:.5f} \n')
+        for mua in np.linspace(0.0000,1,20000): #0.0035
+            for t in range(0, time-1):
+                L2 = b*A*np.exp(-cla*A-cll*L)
+                P2 = L*(1-mul)
+                A2 = P*(1-mup)*np.exp(-cpa*A)+A*(1-mua)
+                
+                L,P,A = L2,P2,A2
+            f.write(f'{mua:.10f} {L:.5f} {P:.5f} {A:.5f} \n')
         f.close()
 
 
 pool = Pool(8)
 sums = pool.map(vlakno, np.linspace(0,70,8))
 
+# def vlakno(A):
+#     with open('data/pocitej_output_' + str(A) + '.txt', 'w') as f:
+#         for L in np.linspace(1,200,3):
+#             for P in np.linspace(1,600,4):
+#                 for mua in np.linspace(0.0000,1,200000): #0.0035
+#                     for t in range(0, time-1):
+#                         L2 = b*A*np.exp(-cla*A-cll*L)
+#                         P2 = L*(1-mul)
+#                         A2 = P*(1-mup)*np.exp(-cpa*A)+A*(1-mua)
+                        
+#                         L,P,A = L2,P2,A2
+#                     f.write(f'{mua:.10f} {L:.5f} {P:.5f} {A:.5f} \n')
+#         f.close()
 
-# for mua in np.linspace(0.0000,10,500): #0.0035
-#     L = 1
-#     P = A = 0
 
-#     for [mul, mup] in product(np.linspace(0.266,0.268,10), np.linspace(0,0.001,10)):
-#         for t in range(0, time-1):
-#             L2 = b*A*np.exp(-cla*A-cll*L)
-#             P2 = L*(1-mul)
-#             A2 = P*(1-mup)*np.exp(-cpa*A)+A*(1-mua)
-            
-#             L,P,A = L2,P2,A2
-
-#         f.write(f'{mua:.10f} {L:.5f} {P:.5f} {A:.5f} \n')
-
+# pool = Pool(8)
+# sums = pool.map(vlakno, np.linspace(0,70,8))
 
 
 print(datetime.datetime.now()-a)
