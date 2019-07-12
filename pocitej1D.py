@@ -27,18 +27,20 @@ b = 7.48
 
 
 def vlakno(A):
-
-    L=10
-    P=10
+    A0 = A
     with open('data/pocitej_output_' + str(A) + '.txt', 'w') as f:
-        for mua in np.linspace(0.9,1,2000): #0.0035
-            for t in range(0, time-1):
-                L2 = b*A*np.exp(-cla*A-cll*L)
-                P2 = L*(1-mul)
-                A2 = P*(1-mup)*np.exp(-cpa*A)+A*(1-mua)
-                
-                L,P,A = L2,P2,A2
-                f.write('% .10f % .5f % .5f %.5f \n' % (mua,L,P,A))
+        for L in np.linspace(1,200,3):
+            L0 = L
+            for P in np.linspace(1,600,4):
+                P0 = P
+                for mua in np.linspace(0.9,1,5): #np.linspace(0.0000,1,200000): #0.0035
+                    for t in range(0, time-1):
+                        L2 = b*A*np.exp(-cla*A-cll*L)
+                        P2 = L*(1-mul)
+                        A2 = P*(1-mup)*np.exp(-cpa*A)+A*(1-mua)
+                        
+                        L,P,A = L2,P2,A2
+                    f.write(f'{mua:.10f} {L:.5f} {P:.5f} {A:.5f} {L0:.0f} {P0:.0f} {A0:.5f} \n')
         f.close()
 
 
