@@ -11,26 +11,22 @@ mu_all = []
 L_all = []
 P_all = []
 A_all = []
-L0_all = []
-P0_all = []
 A0_all = []
 
 for f in files:
-    matrix = np.loadtxt(f, usecols=range(7))
+    matrix = np.loadtxt(f, usecols=range(5))
     mu= matrix[:,0]
     L = matrix[:,1]
     P = matrix[:,2]
     A = matrix[:,3]
-    L0 = matrix[:,4]
-    P0 = matrix[:,5]
-    A0 = matrix[:,6]
+    A0 = matrix[:,4]
+
+    print(A0[0])
 
     mu_all.extend(mu)
     L_all.extend(L)
     P_all.extend(P)
     A_all.extend(A)
-    L0_all.extend(L0)
-    P0_all.extend(P0)
     A0_all.extend(A0)
 
 
@@ -39,32 +35,46 @@ indexRange = range(0, count)
 
 total_all = [ L_all[i] + P_all[i] + A_all[i] for i in indexRange ]
 
-fig = plt.figure()
 
-ax1 = fig.add_subplot(211)
+from bokeh.plotting import figure, show, save, output_file
 
-ax1.set_title("Bifurkační diagram")
-ax1.set_xlabel('mua')
-ax1.set_ylabel('populace')
+output_file('bifurcation_diagram.html', title='bifurcation_diagram')
 
-#ax1.plot(mu, A, c='b', label='the data')
+# Create a figure with no toolbar and axis ranges of [0,3]
+fig = figure(plot_height=600, plot_width=1200,
+             x_range=(0, 1), y_range=(-5, 750),
+             toolbar_location="below", x_axis_label='úmrtnost brouků',
+             y_axis_label='populace')
+fig.circle(x=mu_all, y=A_all,
+           color='blue', size=0.2,legend='larvy')
+fig.circle(x=mu_all, y=P_all,
+           color='green', size=0.2, legend='kukly')
+fig.circle(x=mu_all, y=L_all,
+           color='red', size=0.2, legend='brouci')
+fig.circle(x=mu_all, y=total_all,
+           color='black', size=0.2)
+fig.legend.location='top_left'
 
-ax1.scatter(mu_all, A_all, c='black', s=1, label='A')
-ax1.scatter(mu_all, P_all, c='r', s=1, label='P')
-ax1.scatter(mu_all, L_all, c='b', s=1, label='L')
-ax1.scatter(mu_all, total_all, c='purple', s=1, label='total')
+show(fig)
 
 
 
-A_mu1  = [A_all[i]  for i in indexRange if mu_all[i] > .9]
-A0_mu1 = [A0_all[i] for i in indexRange if mu_all[i] > .9]
+# fig = plt.figure()
 
-ax2 = fig.add_subplot(212)
-ax2.set_title("Počáteční vs asymptotické A v mua > 0.9")
-ax2.set_xlabel("A0")
-ax2.set_title("A inf")
-ax2.scatter(A0_mu1, A_mu1, s=1)
+# ax1 = fig.add_subplot(111)
 
-leg = ax1.legend()
-plt.savefig("bifurcation.jpg", dpi=600)
+# ax1.set_title("Bifurkační diagram")
+# ax1.set_xlabel('mua')
+# ax1.set_ylabel('populace')
+
+# #ax1.plot(mu, A, c='b', label='the data')
+
+# ax1.scatter(mu_all, A_all, c='black', s=0.1, label='A')
+# ax1.scatter(mu_all, P_all, c='r', s=0.1, label='P')
+# ax1.scatter(mu_all, L_all, c='b', s=0.1, label='L')
+# ax1.scatter(mu_all, total_all, c='purple', s=0.1, label='total')
+
+
+# leg = ax1.legend()
+# plt.savefig("bifurcation.png", dpi=600)
 #plt.show()
