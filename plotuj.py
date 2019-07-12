@@ -31,8 +31,8 @@ ax1.set_ylabel('your y label...')
 
 #ax1.plot(mu, A, c='b', label='the data')
 
-ax1.scatter(mu_all, A_all, c='b', s=0.5, label='the data')
+ax1.scatter(mu_all, A_all, c='b', s=0.1, label='the data')
 
 leg = ax1.legend()
-plt.savefig("bifurcation.jpg", dpi=300)
-plt.show()
+plt.savefig("bifurcation600.pdf", dpi=600)
+#plt.show()

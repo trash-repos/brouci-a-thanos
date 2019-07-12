@@ -31,14 +31,14 @@ def vlakno(A):
     L=10
     P=10
     with open('data/pocitej_output_' + str(A) + '.txt', 'w') as f:
-        for mua in np.linspace(0.0000,1,20000): #0.0035
+        for mua in np.linspace(0.9,1,2000): #0.0035
             for t in range(0, time-1):
                 L2 = b*A*np.exp(-cla*A-cll*L)
                 P2 = L*(1-mul)
                 A2 = P*(1-mup)*np.exp(-cpa*A)+A*(1-mua)
                 
                 L,P,A = L2,P2,A2
-            f.write(f'{mua:.10f} {L:.5f} {P:.5f} {A:.5f} \n')
+                f.write('% .10f % .5f % .5f %.5f \n' % (mua,L,P,A))
         f.close()
 
 
@@ -56,7 +56,7 @@ sums = pool.map(vlakno, np.linspace(0,70,8))
 #                         A2 = P*(1-mup)*np.exp(-cpa*A)+A*(1-mua)
                         
 #                         L,P,A = L2,P2,A2
-#                     f.write(f'{mua:.10f} {L:.5f} {P:.5f} {A:.5f} \n')
+#                    f.write('% .10f % .5f % .5f %.5f \n' % (mua,L,P,A))
 #         f.close()
 
 
