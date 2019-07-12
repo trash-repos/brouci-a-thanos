@@ -36,45 +36,39 @@ indexRange = range(0, count)
 total_all = [ L_all[i] + P_all[i] + A_all[i] for i in indexRange ]
 
 
-from bokeh.plotting import figure, show, save, output_file
+# from bokeh.plotting import figure, show, save, output_file
 
-output_file('bifurcation_diagram.html', title='bifurcation_diagram')
+# output_file('bifurcation_diagram.html', title='bifurcation_diagram')
+# fig = figure(plot_height=600, plot_width=1200,
+#              x_range=(0.9, 1), y_range=(-5, 750),
+#              toolbar_location="below", x_axis_label='úmrtnost brouků',
+#              y_axis_label='populace')
+# fig.legend.location='top_left'
 
-# Create a figure with no toolbar and axis ranges of [0,3]
-fig = figure(plot_height=600, plot_width=1200,
-             x_range=(0, 1), y_range=(-5, 750),
-             toolbar_location="below", x_axis_label='úmrtnost brouků',
-             y_axis_label='populace')
-fig.circle(x=mu_all, y=A_all,
-           color='blue', size=0.2,legend='larvy')
-fig.circle(x=mu_all, y=P_all,
-           color='green', size=0.2, legend='kukly')
-fig.circle(x=mu_all, y=L_all,
-           color='red', size=0.2, legend='brouci')
-fig.circle(x=mu_all, y=total_all,
-           color='black', size=0.2)
-fig.legend.location='top_left'
+# s = 0.1 #size óf points
+# fig.circle(x=mu_all, y=A_all, color='blue', size=s,legend='larvy')
+# fig.circle(x=mu_all, y=P_all, color='green', size=s, legend='kukly')
+# fig.circle(x=mu_all, y=L_all, color='red', size=s, legend='brouci')
+# fig.circle(x=mu_all, y=total_all, color='black', size=s,legend='larvy + kukly + brouci')
 
-show(fig)
+# show(fig)
 
+fig = plt.figure()
 
+ax1 = fig.add_subplot(111)
 
-# fig = plt.figure()
+ax1.set_title("Bifurkační diagram")
+ax1.set_xlabel('mua')
+ax1.set_ylabel('populace')
 
-# ax1 = fig.add_subplot(111)
+#ax1.plot(mu, A, c='b', label='the data')
 
-# ax1.set_title("Bifurkační diagram")
-# ax1.set_xlabel('mua')
-# ax1.set_ylabel('populace')
-
-# #ax1.plot(mu, A, c='b', label='the data')
-
-# ax1.scatter(mu_all, A_all, c='black', s=0.1, label='A')
-# ax1.scatter(mu_all, P_all, c='r', s=0.1, label='P')
-# ax1.scatter(mu_all, L_all, c='b', s=0.1, label='L')
-# ax1.scatter(mu_all, total_all, c='purple', s=0.1, label='total')
+ax1.scatter(mu_all, A_all, c='black', s=0.002, label='A')
+ax1.scatter(mu_all, P_all, c='r', s=0.02, label='P')
+ax1.scatter(mu_all, L_all, c='b', s=0.01, label='L')
+ax1.scatter(mu_all, total_all, c='purple', s=0.003, label='total')
 
 
-# leg = ax1.legend()
-# plt.savefig("bifurcation.png", dpi=600)
-#plt.show()
+leg = ax1.legend()
+plt.savefig("bifurcation.png", dpi=3200)
+plt.show()

@@ -25,10 +25,10 @@ mup = 0
 b = 7.48
 
 mua_ranges = chain(
-    np.linspace(0,    1, 1000),
-    np.linspace(0.08, 0.12, 1000),
-    np.linspace(0.56, 0.65, 1000),
-    np.linspace(0.95,  1,    1000)
+    np.linspace(0,    1,    10000),
+    np.linspace(0.083, 0.09, 10000),
+    np.linspace(0.56, 0.65, 10000),
+    np.linspace(0.95,  1,   100000)
 )
 
 def vlakno(A):
