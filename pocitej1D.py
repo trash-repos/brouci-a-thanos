@@ -9,8 +9,8 @@ from os.path import isfile, join
 
 
 files = [fd for fd in ( join('data/', f) for f in listdir('data/') ) if isfile(fd)]
-for f in files:
-    remove(f)
+ for f in files:
+     remove(f)
 
 
 a = datetime.datetime.now()
@@ -25,11 +25,9 @@ mup = 0
 b = 7.48
 
 mua_ranges = chain(
-    np.linspace(0,    1,    10000),
-    np.linspace(0.083, 0.09, 10000),
-    np.linspace(0.56, 0.65, 10000),
-    np.linspace(0.95,  1,   100000)
+    np.linspace(0,    1,    20000),
 )
+    np.linspace(0.951,  1,   1e8)
 
 def vlakno(A):
     A0 = A
@@ -43,12 +41,13 @@ def vlakno(A):
                 A2 = P*(1-mup)*np.exp(-cpa*A)+A*(1-mua)
                 
                 L,P,A = L2,P2,A2
-            f.write(f'{mua:.10f} {L:.5f} {P:.5f} {A:.5f} {A0:.5f} \n')
+                if t>time-20:
+                    f.write(f'{mua:.10f} {L:.5f} {P:.5f} {A:.5f} {A0:.5f} \n')
         f.close()
 
 
-pool = Pool(8)
-sums = pool.map(vlakno, np.linspace(0,70,8))
+pool = Pool(6)
+sums = pool.map(vlakno, np.linspace(10,110,6))
 
 
 

@@ -5,7 +5,7 @@ from os.path import isfile, join
 
 
 
-files = [fd for fd in ( join('data/', f) for f in listdir('data/') ) if isfile(fd)]
+files = [fd for fd in ( join('data_1e8/', f) for f in listdir('data_1e8/') ) if isfile(fd)]
 
 mu_all = []
 L_all = []
@@ -35,40 +35,44 @@ indexRange = range(0, count)
 
 total_all = [ L_all[i] + P_all[i] + A_all[i] for i in indexRange ]
 
+####mohek................................................................................
+from bokeh.plotting import figure, show, save, output_file
 
-# from bokeh.plotting import figure, show, save, output_file
+output_file('bifurcation_diagram.html', title='bifurcation_diagram')
+fig = figure(plot_height=600, plot_width=1200,
+             x_range=(0,1), y_range=(-5, 750),
+             toolbar_location="below", x_axis_label='úmrtnost brouků',
+             y_axis_label='populace')
+fig.legend.location='top_left'
 
-# output_file('bifurcation_diagram.html', title='bifurcation_diagram')
-# fig = figure(plot_height=600, plot_width=1200,
-#              x_range=(0.9, 1), y_range=(-5, 750),
-#              toolbar_location="below", x_axis_label='úmrtnost brouků',
-#              y_axis_label='populace')
-# fig.legend.location='top_left'
+s = 1 #size óf points
+fig.circle(x=mu_all, y=A_all, color='blue', size=s,legend='larvy')
+fig.circle(x=mu_all, y=P_all, color='green', size=s, legend='kukly')
+fig.circle(x=mu_all, y=L_all, color='red', size=s, legend='brouci')
+fig.circle(x=mu_all, y=total_all, color='black', size=s,legend='larvy + kukly + brouci')
 
-# s = 0.1 #size óf points
-# fig.circle(x=mu_all, y=A_all, color='blue', size=s,legend='larvy')
-# fig.circle(x=mu_all, y=P_all, color='green', size=s, legend='kukly')
-# fig.circle(x=mu_all, y=L_all, color='red', size=s, legend='brouci')
-# fig.circle(x=mu_all, y=total_all, color='black', size=s,legend='larvy + kukly + brouci')
-
-# show(fig)
-
-fig = plt.figure()
-
-ax1 = fig.add_subplot(111)
-
-ax1.set_title("Bifurkační diagram")
-ax1.set_xlabel('mua')
-ax1.set_ylabel('populace')
-
-#ax1.plot(mu, A, c='b', label='the data')
-
-ax1.scatter(mu_all, A_all, c='black', s=0.002, label='A')
-ax1.scatter(mu_all, P_all, c='r', s=0.02, label='P')
-ax1.scatter(mu_all, L_all, c='b', s=0.01, label='L')
-ax1.scatter(mu_all, total_all, c='purple', s=0.003, label='total')
+show(fig)
 
 
-leg = ax1.legend()
-plt.savefig("bifurcation.png", dpi=3200)
-plt.show()
+
+####matplotlib............................................................................
+# fig = plt.figure()
+
+# ax1 = fig.add_subplot(111)
+
+# ax1.set_title("Bifurkační diagram")
+# ax1.set_xlabel('mua')
+# ax1.set_ylabel('populace')
+
+# #ax1.plot(mu, A, c='b', label='the data')
+
+# s=0.001
+# ax1.scatter(mu_all, A_all, c='black', s=s, label='A')
+# ax1.scatter(mu_all, P_all, c='r', s=s, label='P')
+# ax1.scatter(mu_all, L_all, c='b', s=s, label='L')
+# ax1.scatter(mu_all, total_all, c='purple', s=s, label='total')
+
+
+# leg = ax1.legend()
+# plt.savefig("bifurcation.png", dpi=3200)
+# plt.show()

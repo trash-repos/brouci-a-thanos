@@ -1,0 +1,56 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+A	../plotuj.py	/^    A = matrix[:,3]$/;"	kind:variable	line:21
+A	../pocitej.py	/^        A = 0  #brouk$/;"	kind:variable	line:22
+A0	../plotuj.py	/^    A0 = matrix[:,4]$/;"	kind:variable	line:22
+A0_all	../plotuj.py	/^A0_all = []$/;"	kind:variable	line:14
+A2	../pocitej.py	/^            A2 = P*(1-mup)*math.exp(-cpa*A)+A*(1-mua)$/;"	kind:variable	line:27
+A_all	../plotuj.py	/^A_all = []$/;"	kind:variable	line:13
+L	../plotuj.py	/^    L = matrix[:,1]$/;"	kind:variable	line:19
+L	../pocitej.py	/^        L = 5 #larva$/;"	kind:variable	line:20
+L2	../pocitej.py	/^            L2 = b*A*math.exp(-cla*A-cll*L)$/;"	kind:variable	line:25
+L_all	../plotuj.py	/^L_all = []$/;"	kind:variable	line:11
+P	../plotuj.py	/^    P = matrix[:,2]$/;"	kind:variable	line:20
+P	../pocitej.py	/^        P = 0  #kukla$/;"	kind:variable	line:21
+P2	../pocitej.py	/^            P2 = L*(1-mul)$/;"	kind:variable	line:26
+P_all	../plotuj.py	/^P_all = []$/;"	kind:variable	line:12
+a	../pocitej.py	/^a = datetime.datetime.now()$/;"	kind:variable	line:5
+a	../pocitej1D.py	/^a = datetime.datetime.now()$/;"	kind:variable	line:16
+b	../pocitej.py	/^b = 7.48$/;"	kind:variable	line:13
+b	../pocitej1D.py	/^b = 7.48$/;"	kind:variable	line:25
+cla	../pocitej.py	/^cla = 0.009$/;"	kind:variable	line:9
+cla	../pocitej1D.py	/^cla = 0.009$/;"	kind:variable	line:20
+cll	../pocitej.py	/^cll = 0.012$/;"	kind:variable	line:10
+cll	../pocitej1D.py	/^cll = 0.012$/;"	kind:variable	line:21
+count	../plotuj.py	/^count = len(mu_all)$/;"	kind:variable	line:33
+cpa	../pocitej.py	/^cpa = 0.004$/;"	kind:variable	line:11
+cpa	../pocitej1D.py	/^cpa = 0.004$/;"	kind:variable	line:22
+f	../pocitej.py	/^f = open('pocitej_output.txt', 'w')$/;"	kind:variable	line:15
+fig	../plotuj.py	/^fig = figure(plot_height=600, plot_width=1200,$/;"	kind:variable	line:42
+files	../plotuj.py	/^files = [fd for fd in ( join('data_1e8\/', f) for f in listdir('data_1e8\/') ) if isfile(fd)]$/;"	kind:variable	line:8
+files	../pocitej1D.py	/^files = [fd for fd in ( join('data\/', f) for f in listdir('data\/') ) if isfile(fd)]$/;"	kind:variable	line:11
+indexRange	../plotuj.py	/^indexRange = range(0, count)$/;"	kind:variable	line:34
+lyeepuneevs_kooleficients.py	../lyeepuneevs_kooleficients.py	1;"	kind:file	line:1
+matrix	../plotuj.py	/^    matrix = np.loadtxt(f, usecols=range(5))$/;"	kind:variable	line:17
+mu	../plotuj.py	/^    mu= matrix[:,0]$/;"	kind:variable	line:18
+mu_all	../plotuj.py	/^mu_all = []$/;"	kind:variable	line:10
+mua_ranges	../pocitej1D.py	/^mua_ranges = chain($/;"	kind:variable	line:27
+mul	../pocitej1D.py	/^mul = 0.287$/;"	kind:variable	line:23
+mup	../pocitej.py	/^mup = 0$/;"	kind:variable	line:12
+mup	../pocitej1D.py	/^mup = 0$/;"	kind:variable	line:24
+plotuj.py	../plotuj.py	1;"	kind:file	line:1
+pocitej.py	../pocitej.py	1;"	kind:file	line:1
+pocitej1D.py	../pocitej1D.py	1;"	kind:file	line:1
+pool	../pocitej1D.py	/^pool = Pool(6)$/;"	kind:variable	line:49
+s	../plotuj.py	/^s = 1 #size óf points$/;"	kind:variable	line:48
+sums	../pocitej1D.py	/^sums = pool.map(vlakno, np.linspace(10,110,6))$/;"	kind:variable	line:50
+time	../pocitej.py	/^time = 600$/;"	kind:variable	line:7
+time	../pocitej1D.py	/^time = 200$/;"	kind:variable	line:18
+total_all	../plotuj.py	/^total_all = [ L_all[i] + P_all[i] + A_all[i] for i in indexRange ]$/;"	kind:variable	line:36
+vlakno	../pocitej1D.py	/^def vlakno(A):$/;"	kind:function	line:32
+x_range	../plotuj.py	/^             x_range=(0,1), y_range=(-5, 750),$/;"	kind:variable	line:43
+y_axis_label	../plotuj.py	/^             y_axis_label='populace')$/;"	kind:variable	line:45
