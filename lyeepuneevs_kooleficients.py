@@ -9,7 +9,7 @@ def logistikuj(x, mua, mup, mul, cpa, cla, cll):
     A2 = x[1]*(1.-mup)*np.exp(-cpa*x[2])+x[2]*(1.-mua)
     return np.array([L2, P2, A2])
 
-d0 = np.array([0.,0.,10e-12])
+d0 = np.array([0.,0.,10e-13])
 x0 = np.array([100.,100.,100.])
 
 #mua0 = 0.2
@@ -20,7 +20,7 @@ cla0 = 0.009
 cll0 = 0.012
 cpa0 = 0.004
 
-for mua0 in np.linspace(0.8,1,10000):
+for mua0 in np.linspace(0.9,1,10000):
     #Dojdi k atraktoru
     x1 = x0
     for x in range(500):
