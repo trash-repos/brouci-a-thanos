@@ -46,6 +46,11 @@
 %\usepackage{lmodern}
 %\usepackage[czech]{babel}
 
+%tikz input
+\usepackage{pgfplots}
+
+\newlength\figureheight
+\newlength\figurewidth
 
 % \newcommand{\AUTOR}{}
 
@@ -56,7 +61,7 @@
 
 \begin{document}
 \section{Moučný červ (Tribolium)}
-Vývoj tohoto červa je postupně: vajíčko $\rightarrow$ larva $L$ (2 týdny)$\rightarrow$ kukla $P$ (2 týdny)$\rightarrow$ brouk $A$. Vývoj jednotlivých fází lze popsat vztahy\\
+Aby bylo možné počítat populace moučných červů, je nutné znát jejich životní cyklus. Z fundamentáního pozorování jejich vývoje lze tento cyklus odhadnout. Prvotní fází je vajíčko ($L$), z nějž se po 2 týdnech vylíhne larva ($P$). Po dalších dvou týdnech se z larvy stává dospělý červ ($A$). Vývoj jednotlivých fází lze popsat vztahy\\
 \begin{equation}
     \begin{split}
 \text{Larva: }& L_{n+1}=b A_n \\
@@ -64,11 +69,12 @@ Vývoj tohoto červa je postupně: vajíčko $\rightarrow$ larva $L$ (2 týdny)$
 \text{Brouk: }& A_{n+1}=P_n(1-\mu_p)+A_n(1-\mu_a), \\
     \end{split}
 \end{equation}
-kde $\mu_l$ je úmrtnost larev, $\mu_p$ úmrtnost kukel a $\mu_a$ úmrtnost brouků.
+kde $\mu_l$ je úmrtnost larev, $\mu_p$ úmrtnost kukel a $\mu_a$ úmrtnost brouků. Spodní indexy jsou pak ordinálním číslováním populace.
 
 
 Pokud zahrneme kanibalismus, který se u těchto druhů často vyskytuje, dostaneme: \\
 \begin{equation}
+\label{eq:vyvoj}
 \begin{split}
 \text{požírání larev: }&L_{n+1}=b A_n e^{-c_{la}A_n-c_{ll} L_n} \\
 \text{požírání kukel: }&P_{n+1}=L_n(1-\mu_l) \\
@@ -87,31 +93,45 @@ c_{pa}& = 0.004 \text{ (A požírá P)}\\
 b& =7.48 \text{ počet nových larev na 1 dospělého brouka za jednotku času, což je 14 dní)}\\
 \end{split}
 \end{equation}
+Všechny tyto parametry jsou tzv. řídící parametry systému.
+
+\subsection{Bifurkační diagram}
+Systém popsaný rovnicemi \ref{eq:vyvoj} tvoří pro některý interval řídících parametrů chaotický systém, tzn. že malé změny v počátečních podmínkách způsobí, že po několika desítkách až stovkách cyklech může být rozdíl v počtu jedinců velký. Pro vizualizaci limitních stavů systému pro různé řídící parametry se využívá bifurkační diagram. Bifurkační diagram generujeme dostatečným počtem iterací systému (tím se dostaneme do limitního stavu) a následně uložením několika posledních hodnot pro danou hodnotu řídícího parametru (řádově desítky hodnot). Na bifurkačním diagramu pak vidíme zdvojování period (pro jednu hodnotu parametru dostáváme více limitních hodnot) a pokud systém přejde do chaotického režimu, dostáváme pro jednu hodnotu řídícího parametru velké množství limitních hodnot. V našem případě byla zvolena osa $x$ pro úmrtnost brouků $\mu_a$ a osa $y$ pro počet jedinců po 200-230 cyklech.
+% \setlength\figureheight{2in}
+% \setlength\figurewidth{3in}
+% \InputIfFileExists{grafy/bifurcation.tikz}{}{\textbf{!! Missing graphics !!}}
+\begin{graph}[H]
+	\centering
+\includegraphics[width=\textwidth]{grafy/bifurcation.png}
+\vspace{-10pt}
+\caption{Bifurkační diagram}
+\label{fig:bifurcation}
+\end{graph}
+
+
+Z grafu \ref{fig:bifurcation} je patrné, že k první bifurkaci dochází při $\mu_a=0.1$, kde se perioda $1$ mění na periodu $2$. Druhá bifurkace je v bodě $\mu_a=0.6$, perioda $2$ se mění na $1$. ke třetí bifurkaci dochází při $\mu_a=0.954$, kde se systém začíná chovat chaoticky.
+
 
 \subsection{Nalezení největšího Ljapuova exponentu}
-Nalezení největšího Ljapuova experimentu pro $\mu_a\in[0,1]$ provedeme metodou............
+Pro nalezení největšího Ljapuova exponentu pro $\mu_a\in[0,1]$ jsme nejdříve systém s počátečními podmínkami $L_0=100, P_0=100, A_0=100$ iterovali 400 generací aby jsme se při určování Ljapunova exponentu nacházeli na atraktoru. V konfiguračním prostoru jsme pak vytvořili druhou orbitu $\vec{x_b}$ přičtením vektoru $\vec{d_0}=\left(0,0,10^{-8}\right)$ ke stavovému vektoru $\vec{x_a}$ obdrženému po 400 iteracích od počátečních podmínek. Obě orbity jsme následně iterovali 3000 generací s tím, že po každé iteraci jsme uložili hodnotu $d=\frac{|\vec{x_b}-\vec{x_a}|}{|d_0|}$ a korigovali druhou orbitu vzorcem $\vec{x_{bkor}}=\vec{x_a}+\frac{1}{d}\left(\vec{x_b}-\vec{x_a}\right)$. Korigováním druhé orbity jsme zajistili, že vektor $\vec{x_{bkor}}$ je vždy ve vzdálenosti $|\vec{d_0}|$ od vektoru $\vec{x_a}$, ale ve směru $\vec{x_b}-\vec{x_a}$. Z uložených hodnot $d$ jsme určili průměr všech $log(d)$, který je maximálním Ljapunovým exponentem. 
 
-.................
-Fázový prostor $x=P_n$, y=$L_n$, $z=A_n$
+\begin{graph}[H]
+	\centering
+\includegraphics[width=\textwidth]{grafy/mua_f_wid.png}
+\vspace{-10pt}
+\caption{Maximální Ljapunovy exponenty pro parametr $\mu_a$}
+\label{fig:lyapunov_mua}
+\end{graph}
 
-První bifurkace je při $\mu_a=0.1$, zde se perioda $1$ mění na periodu $2$. Druhá bifurkace je v bodě $\mu_a=0.6$, perioda $2$ se mění na $1$. ke třetí bifurkaci dochází při $\mu_a=0.954$, kde vzniká chaotické chování.
-
-projekt: 
-
-\section{Po Thanosově lusknutí}
-Předpokládejme, že populace blouků je statisticky natolik veliká, že dojde k vyhlazení poloviny populace.
-Tento krok lze zapsal, jako
-\begin{equation}
-  \begin{split}
-\text{Larva: }& L_{n+1}=\frac{L_n}{2} \\
-\text{Kukla: }& P_{n+1}=\frac{P_n}{2} \\
-\text{Brouk: }& A_{n+1}=\frac{A_n}{2} \\
-  \end{split}
-\end{equation}
-
+\begin{graph}[H]
+	\centering
+\includegraphics[width=\textwidth]{grafy/mua.png}
+\vspace{-10pt}
+\caption{Ljapunovy exponenty pro paremetr $\mu_a$, přiblížení na chaotický režim}
+\label{fig:lyapunov_mua_zoom}
+\end{graph}
 
 ---------------------------------------------------------------------\\
 \today, Daniel Rod, Michal Grňo, Jan Střeleček
 
 \end{document}
-
