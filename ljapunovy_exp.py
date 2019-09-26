@@ -14,15 +14,15 @@ x0 = np.array([100.,100.,100.])
 
 b = 7.48
 
-mua0 = 0.0036
+#mua0 = 0.0036
 mup0 = 0.0
-#mul0 = 0.267
+mul0 = 0.267
 
 cla0 = 0.009
 cll0 = 0.012
 cpa0 = 0.004
 
-for mul0 in np.linspace(0.95,1.,5000):
+for mua0 in np.linspace(0.95,1.,5000):
     #Dojdi k atraktoru
     x1 = x0
     for x in range(400):
