@@ -108,9 +108,15 @@ Systém popsaný rovnicemi \ref{eq:vyvoj} tvoří pro některý interval řídí
 \label{fig:bifurcation}
 \end{graph}
 
-
 Z grafu \ref{fig:bifurcation} je patrné, že k první bifurkaci dochází při $\mu_a=0.1$, kde se perioda $1$ mění na periodu $2$. Druhá bifurkace je v bodě $\mu_a=0.6$, perioda $2$ se mění na $1$. ke třetí bifurkaci dochází při $\mu_a=0.954$, kde se systém začíná chovat chaoticky.
 
+\begin{graph}[H]
+	\centering
+\includegraphics[width=\textwidth]{grafy/bifurcation_zoom2.png}
+\vspace{-10pt}
+\caption{Bifurkační diagram - přiblížení na chaotický režim}
+\label{fig:bifurcation_zoom}
+\end{graph}
 
 \subsection{Nalezení největšího Ljapuova exponentu}
 Pro nalezení největšího Ljapuova exponentu pro $\mu_a\in[0,1]$ jsme nejdříve systém s počátečními podmínkami $L_0=100, P_0=100, A_0=100$ iterovali 400 generací aby jsme se při určování Ljapunova exponentu nacházeli na atraktoru. V konfiguračním prostoru jsme pak vytvořili druhou orbitu $\vec{x_b}$ přičtením vektoru $\vec{d_0}=\left(0,0,10^{-8}\right)$ ke stavovému vektoru $\vec{x_a}$ obdrženému po 400 iteracích od počátečních podmínek. Obě orbity jsme následně iterovali 3000 generací s tím, že po každé iteraci jsme uložili hodnotu $d=\frac{|\vec{x_b}-\vec{x_a}|}{|d_0|}$ a korigovali druhou orbitu vzorcem $\vec{x_{bkor}}=\vec{x_a}+\frac{1}{d}\left(\vec{x_b}-\vec{x_a}\right)$. Korigováním druhé orbity jsme zajistili, že vektor $\vec{x_{bkor}}$ je vždy ve vzdálenosti $|\vec{d_0}|$ od vektoru $\vec{x_a}$, ale ve směru $\vec{x_b}-\vec{x_a}$. Z uložených hodnot $d$ jsme určili průměr všech $log(d)$, který je maximálním Ljapunovým exponentem. 
@@ -122,6 +128,8 @@ Pro nalezení největšího Ljapuova exponentu pro $\mu_a\in[0,1]$ jsme nejdří
 \caption{Maximální Ljapunovy exponenty pro parametr $\mu_a$}
 \label{fig:lyapunov_mua}
 \end{graph}
+
+Z hodnot Ljapunových exponentů na grafu vidíme, že v bodech kde dochází ke zdvojování periody orbity jde Ljapunův exponent do nuly, nad hodnotou $\mu_a=0.954$ systém přechází do chaotického režimu (Ljapunův exponent je zde kladný), vidíme ale intervaly řídícího parametru v oblasti $\mu_a > 0.954$, kde dochází k dalším bifurkacím (jak je vidět na bifurkačním diagramu) a exponent je záporný.
 
 \begin{graph}[H]
 	\centering

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/W32TeX) (preloaded format=xelatex 2018.3.12)  25 SEP 2019 15:08
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/W32TeX) (preloaded format=xelatex 2018.3.12)  26 SEP 2019 23:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1212,19 +1212,22 @@ File: grafy/bifurcation.png Graphic file (type bmp)
 [1
 
 ]
+File: grafy/bifurcation_zoom2.png Graphic file (type bmp)
+<grafy/bifurcation_zoom2.png>
+ [2]
 File: grafy/mua_f_wid.png Graphic file (type bmp)
 <grafy/mua_f_wid.png>
- [2]
+ [3]
 File: grafy/mua.png Graphic file (type bmp)
 <grafy/mua.png>
- [3] [4] (./larvaKuklaBrouk.aux) ) 
+ [4] [5] (./larvaKuklaBrouk.aux) ) 
 Here is how much of TeX's memory you used:
- 34070 strings out of 493007
- 836486 string characters out of 6137965
+ 34075 strings out of 493007
+ 836623 string characters out of 6137965
  1076256 words of memory out of 5000000
- 37544 multiletter control sequences out of 15000+600000
+ 37548 multiletter control sequences out of 15000+600000
  534989 words of font info for 49 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  62i,17n,96p,10471b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on larvaKuklaBrouk.xdv (4 pages, 33664 bytes).
+Output written on larvaKuklaBrouk.xdv (5 pages, 38408 bytes).

@@ -9,13 +9,13 @@ from os.path import isfile, join
 
 
 files = [fd for fd in ( join('data/', f) for f in listdir('data/') ) if isfile(fd)]
- for f in files:
+for f in files:
      remove(f)
 
 
 a = datetime.datetime.now()
 
-time = 200
+time = 230
 
 cla = 0.009
 cll = 0.012
@@ -27,7 +27,6 @@ b = 7.48
 mua_ranges = chain(
     np.linspace(0,    1,    20000),
 )
-    np.linspace(0.951,  1,   1e8)
 
 def vlakno(A):
     A0 = A
@@ -41,7 +40,7 @@ def vlakno(A):
                 A2 = P*(1-mup)*np.exp(-cpa*A)+A*(1-mua)
                 
                 L,P,A = L2,P2,A2
-                if t>time-20:
+                if t>time-30:
                     f.write(f'{mua:.10f} {L:.5f} {P:.5f} {A:.5f} {A0:.5f} \n')
         f.close()
 
